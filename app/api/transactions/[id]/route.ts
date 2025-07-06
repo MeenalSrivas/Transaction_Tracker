@@ -8,6 +8,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
+    console.log("Attempting to delete transaction...");
     await connectDB();
     const { id } = params;
     
