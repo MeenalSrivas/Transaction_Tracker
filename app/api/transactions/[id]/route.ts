@@ -3,9 +3,9 @@ import { connectDB } from '../../../../lib/mongodb';
 import {Transaction} from '../../../../lib/models/transaction';
 
 export async function DELETE(request: NextRequest, 
-  context: { params: { id: string } }) {
+  { params }: { params: { id: string }}) {
   await connectDB();
-  const { id } = context.params;
+  const { id } = params;
   await Transaction.findByIdAndDelete(id);
   return new Response(JSON.stringify({ success: true }), { status: 200 });
  
