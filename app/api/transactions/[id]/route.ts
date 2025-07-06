@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { connectDB } from '../../../../lib/mongodb';
 import {Transaction} from '../../../../lib/models/transaction';
 
+
 export async function DELETE(request: NextRequest, 
   { params }: { params: { id: string }}) {
   await connectDB();
