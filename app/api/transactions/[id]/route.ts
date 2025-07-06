@@ -5,12 +5,12 @@ import {Transaction} from '../../../../lib/models/transaction';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params:  Promise<{ id: string }> }
 ) {
   try {
     console.log("Attempting to delete transaction...");
     await connectDB();
-    const { id } = params;
+    const { id } =  await params;
     
     const result = await Transaction.findByIdAndDelete(id);
 
