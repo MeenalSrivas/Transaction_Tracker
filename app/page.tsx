@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import { format } from "date-fns";
 
 interface Transaction {
@@ -16,7 +16,10 @@ interface Transaction {
   amount: number;
   date: string;
   type: "income" | "expense";
+  category: string;
 }
+const CATEGORIES = ["Food", "Travel", "Bills", "Shopping", "Health", "Other"];
+const CATEGORY_COLORS = ["#f87171", "#60a5fa", "#fbbf24", "#a78bfa", "#34d399", "#9ca3af"];
 
 export default function Home() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -25,6 +28,8 @@ export default function Home() {
     amount: 0,
     date: "",
     type: "income",
+    category :"Other"
+    
   });
 
   useEffect(() => {
@@ -45,7 +50,7 @@ export default function Home() {
       body: JSON.stringify(form),
       
     });
-    setForm({ description: "", amount: 0, date: "", type: "income" });
+    setForm({ description: "", amount: 0, date: "", type: "income", category:"other" });
     fetchTransactions();
     console.log("Submitting form", form);
   };
@@ -68,6 +73,13 @@ export default function Home() {
       return acc;
     }, new Map()).values()
   );
+
+  const categoryData = CATEGORIES.map((cat) => {
+    const total = transactions
+      .filter((t) => t.type === "expense" && t.category?.toLowerCase() === cat.toLowerCase())
+      .reduce((sum, t) => sum + t.amount, 0);
+    return { category: cat, amount: total };
+  });
 
   return (
     <main className="p-4 max-w-5xl mx-auto">
@@ -113,7 +125,25 @@ export default function Home() {
               </BarChart>
             </ResponsiveContainer>
           </div>
+          <div className="h-64 bg-neutral-800 rounded-lg p-4">
+              <h2 className="text-lg font-semibold mb-2">Expenses by Category</h2>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart margin={{ top: 4 }}>
+                  <Pie data={categoryData} dataKey="amount" nameKey="category" outerRadius={80}>
+                    {categoryData.map((_, i) => (
+                      <Cell key={`cell-${i}`} fill={CATEGORY_COLORS[i % CATEGORY_COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Legend  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          
+
+          
         </TabsContent>
+
+        
 
         <TabsContent value="transactions">
           <div className="space-y-4">
@@ -135,6 +165,14 @@ export default function Home() {
                 <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value as "income" | "expense" })} className="w-full border px-3 py-2 rounded">
                   <option value="income">Income</option>
                   <option value="expense">Expense</option>
+                </select>
+              </div>
+               <div>
+                <Label>Category</Label>
+                <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full border px-3 py-2 rounded text-black">
+                  {CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>{cat}</option>
+                  ))}
                 </select>
               </div>
             </div>
