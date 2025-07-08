@@ -117,6 +117,10 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background: linear-gradient(to right, #f7f9fc, #fefefe); /* subtle white gradient */
+  font-family: 'Inter', sans-serif;
+  color: #1d1d1d;
+  margin: 0;
+  padding: 0;
   }
 }

@@ -82,7 +82,7 @@ export default function Home() {
   });
 
   return (
-    <main className="p-4 max-w-5xl mx-auto">
+    <main className="p-4 max-w-5xl mx-auto ">
       <h1 className="text-3xl font-bold text-center text-purple-600">Transaction Tracker</h1>
       <p className="text-center text-muted-foreground mb-6">Manage your finances with ease</p>
 
@@ -126,7 +126,7 @@ export default function Home() {
             </ResponsiveContainer>
           </div>
           <div className="h-64 bg-neutral-800 rounded-lg p-4">
-              <h2 className="text-lg font-semibold mb-2">Expenses by Category</h2>
+              <h2 className="text-lg font-semibold mb-2 text-white">Expenses by Category</h2>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart margin={{ top: 4 }}>
                   <Pie data={categoryData} dataKey="amount" nameKey="category" outerRadius={80}>
