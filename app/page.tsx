@@ -87,19 +87,19 @@ export default function Home() {
       <p className="text-center text-muted-foreground mb-6">Manage your finances with ease</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <Card className="bg-green-500 text-white">
+        <Card className="bg-green-100 shadow-lg border border-green-300 hover:scale-[1.02] transition-transform duration-300">
           <CardContent className="p-4">
             <p>Total Balance</p>
             <h2 className="text-2xl font-bold">{balance.toFixed(2)}</h2>
           </CardContent>
         </Card>
-        <Card className="bg-blue-500 text-white">
+        <Card className="bg-blue-500 shadow-lg border border-blue-300 hover:scale-[1.02] transition-transform duration-300">
           <CardContent className="p-4">
             <p>Total Income</p>
             <h2 className="text-2xl font-bold">{income.toFixed(2)}</h2>
           </CardContent>
         </Card>
-        <Card className="bg-red-500 text-white">
+        <Card className="bg-red-500 shadow-lg border border-red-300 hover:scale-[1.02] transition-transform duration-300">
           <CardContent className="p-4">
             <p>Total Expenses</p>
             <h2 className="text-2xl font-bold">{expenses.toFixed(2)}</h2>
