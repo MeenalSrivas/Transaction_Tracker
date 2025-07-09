@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Inter, Roboto_Slab } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], weight: "400" });
-const robotoSlab = Roboto_Slab({ subsets: ["latin"], weight: "700" });
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
