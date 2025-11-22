@@ -23,8 +23,6 @@ Environment Variables
 Create a file named .env.local in the root directory of the project. This file will store your sensitive configuration details.
 
 # .env.local
-
-# ----------------------------------------------------------------
 # DATABASE CONFIGURATION
 # ----------------------------------------------------------------
 # Your MongoDB connection string. Use a local instance or a service like Atlas.
