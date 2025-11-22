@@ -24,7 +24,7 @@ Create a file named .env.local in the root directory of the project. This file w
 
 
 # DATABASE CONFIGURATION(.env.local)
-# ----------------------------------------------------------------
+
 MONGODB_URI="mongodb+srv://<user>:<password>@<cluster-url>/<dbname>?retryWrites=true&w=ma
 
 Note: The package.json suggests the use of mongodb and mongoose. Ensure your MONGODB_URI is correctly formatted.
